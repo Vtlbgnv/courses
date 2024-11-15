@@ -11,6 +11,7 @@ pluginManagement {
 		gradlePluginPortal()
 	}
 }
+
 dependencyResolutionManagement {
 	repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
 	repositories {
@@ -21,4 +22,6 @@ dependencyResolutionManagement {
 
 rootProject.name = "courses"
 include(":app")
- 
+include(":core:navigation")
+include(":features:mainhost")
+include(":components:ui")

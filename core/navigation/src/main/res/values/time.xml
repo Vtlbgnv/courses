@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<integer name="extraShortAnimTime">200</integer>
+	<integer name="shortAnimTime">300</integer>
+	<integer name="mediumAnimTime">400</integer>
+	<integer name="longAnimTime">500</integer>
+	<integer name="extraLongAnimTime">600</integer>
+	<integer name="customAnimTime">250</integer>
+</resources>

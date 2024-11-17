@@ -23,5 +23,6 @@ dependencyResolutionManagement {
 rootProject.name = "courses"
 include(":app")
 include(":core:navigation")
+include(":core:network")
 include(":features:mainhost")
 include(":components:ui")

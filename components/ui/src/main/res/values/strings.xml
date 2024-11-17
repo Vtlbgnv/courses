@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="free_course">Бесплатно</string>
+	<string name="more_info">Подробнее</string>
+	<string name="empty_text">Здесь пока ничего нет.</string>
+	<string name="empty_button_text">Попробовать снова</string>
+</resources>

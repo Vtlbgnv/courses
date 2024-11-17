@@ -2,8 +2,9 @@ plugins {
 	id("com.android.library")
 	kotlin("android")
 }
+
 android {
-	namespace = "com.example.courses.components.ui"
+	namespace = "com.example.courses.features.main.courses"
 	compileSdk = 34
 
 	defaultConfig {
@@ -29,13 +30,23 @@ android {
 }
 
 dependencies {
-	implementation(libs.coil)
 	implementation(libs.compose.runTime)
 	implementation(libs.compose.material)
-	implementation(libs.compose.studoPreview)
 	implementation(libs.compose.tooling)
-	implementation(libs.compose.ui)
-	implementation(libs.compose.adaptiveNavigation)
-	implementation(libs.androidx.core)
+	implementation(libs.compose.studoPreview)
 
+	implementation(libs.squareup.retrofit)
+	implementation(libs.squareup.moshi)
+
+	implementation(libs.material)
+
+	implementation(libs.fragment)
+
+	implementation(libs.koin.core)
+	implementation(libs.koin.android)
+
+	implementation(project(":core:navigation"))
+	implementation(project(":core:network"))
+	implementation(project(":components:ui"))
+	implementation(project(":components:presentation"))
 }

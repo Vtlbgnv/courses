@@ -2,6 +2,7 @@ package com.example.courses
 
 import android.app.Application
 import com.example.courses.core.network.di.networkModule
+import com.example.courses.features.main.courses.di.coursesModule
 import com.example.courses.features.mainhost.di.mainHostModule
 import com.example.courses.navigation.di.ciceroneModule
 import com.example.courses.navigation.di.mainModule
@@ -26,6 +27,7 @@ class App : Application() {
 			modules(mainModule)
 			modules(routersModule)
 			modules(networkModule)
+			modules(coursesModule)
 			modules(moshiModule)
 		}
 	}

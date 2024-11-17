@@ -22,7 +22,6 @@ compose_adaptive_navigation = "1.0.0-alpha01"
 okhttp = "4.12.0"
 retrofit = "2.9.0"
 moshi = "1.15.0"
-
 mockito_inline = "5.2.0"
 mockito_junit = "5.13.0"
 mockito_core = "5.13.0"
@@ -30,8 +29,9 @@ mockito_kotlin = "5.4.0"
 turbine = "1.1.0"
 junit5 = "5.11.0"
 junit_suite = "1.11.0"
-
+lifecycle = "2.8.4"
 coroutines = "1.8.1"
+coil = "2.2.2"
 
 
 [libraries]
@@ -49,7 +49,6 @@ compose-tooling = { group = "androidx.compose.ui", name = "ui-tooling", version.
 compose-ui = { group = "androidx.compose.ui", name = "ui", version.ref = "compose" }
 compose-runTime = { group = "androidx.compose.runtime", name = "runtime", version.ref = "compose" }
 compose-adaptiveNavigation = { group = "androidx.compose.material3", name = "material3-adaptive-navigation-suite-android", version.ref = "compose_adaptive_navigation" }
-
 squareup-retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
 squareup-retrofitScalars = { group = "com.squareup.retrofit2", name = "converter-scalars", version.ref = "retrofit" }
 squareup-okhttpInterceptor = { group = "com.squareup.okhttp3", name = "logging-interceptor", version.ref = "okhttp" }
@@ -57,29 +56,27 @@ squareup-moshiRetrofit = { group = "com.squareup.retrofit2", name = "converter-m
 squareup-moshi = { group = "com.squareup.moshi", name = "moshi-kotlin", version.ref = "moshi" }
 squareup-moshiCodegen = { group = "com.squareup.moshi", name = "moshi-kotlin-codegen", version.ref = "moshi" }
 squareup-moshiAdapters = { group = "com.squareup.moshi", name = "moshi-adapters", version.ref = "moshi" }
-
+lifeCycleViewModelKtx = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-ktx", version.ref = "lifecycle" }
+coroutine-core = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "coroutines" }
+coroutine-android = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version.ref = "coroutines" }
 junit-api = { group = "org.junit.jupiter", name = "junit-jupiter-api", version.ref = "junit5" }
 junit-engine = { group = "org.junit.jupiter", name = "junit-jupiter-engine", version.ref = "junit5" }
 junit-params = { group = "org.junit.jupiter", name = "junit-jupiter-params", version.ref = "junit5" }
 junit-suite = { group = "org.junit.platfor", name = "junit-platform-suite", version.ref = "junit_suite" }
-
 mockito-inline = { group = "org.mockito", name = "mockito-inline", version.ref = "mockito_inline" }
 mockito-junit = { group = "org.mockito", name = "mockito-junit-jupiter", version.ref = "mockito_junit" }
 mockito-core = { group = "org.mockito", name = "mockito-core", version.ref = "mockito_core" }
 mockito-kotlin = { group = "org.mockito.kotlin", name = "mockito-kotlin", version.ref = "mockito_kotlin" }
+coil = { group = "io.coil-kt", name = "coil-compose", version.ref = "coil" }
 
 turbine = { group = "app.cash.turbine", name = "turbine", version.ref = "turbine" }
 coroutineTest = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "coroutines" }
 
 
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
-androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
-androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
 androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
-androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
 androidx-navigation-fragment-ktx = { group = "androidx.navigation", name = "navigation-fragment-ktx", version.ref = "navigationFragmentKtx" }
-androidx-navigation-ui-ktx = { group = "androidx.navigation", name = "navigation-ui-ktx", version.ref = "navigationUiKtx" }
 androidx-core = { group = "androidx.core", name = "core", version.ref = "core" }
 
 [plugins]

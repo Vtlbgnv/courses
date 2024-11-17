@@ -95,7 +95,7 @@ fun NavBar(
 				label = {
 					BaseText(
 						text = item.title,
-						style = MaterialTheme.typography.labelSmall,
+						style = MaterialTheme.typography.labelMedium,
 						modifier = Modifier.drawWithContent {
 							if (!readyToDrawList.contains(false)) {
 								drawContent()

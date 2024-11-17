@@ -4,8 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.ui.platform.ComposeView
+import com.example.courses.components.ui.theme.CoursesTheme
 import com.example.courses.core.navigation.navigator.KeepStateNavigator
 import com.example.courses.core.navigation.screenwrappers.FullScreenFragment
 import com.example.courses.core.navigation.utils.RouterNames.MAIN_HOST
@@ -32,8 +32,7 @@ class MainHostFragment : FullScreenFragment() {
 		return inflater.inflate(R.layout.fragment_main_host, container, false)
 			.apply {
 				findViewById<ComposeView>(R.id.navigatorContainer).setContent {
-
-					MaterialTheme {
+					CoursesTheme {
 						NavBar(viewModel)
 					}
 				}

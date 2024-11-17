@@ -35,5 +35,6 @@ dependencies {
 	implementation(libs.compose.tooling)
 	implementation(libs.compose.ui)
 	implementation(libs.compose.adaptiveNavigation)
+	implementation(libs.androidx.core)
 
 }

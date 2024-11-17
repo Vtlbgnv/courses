@@ -1,16 +1,7 @@
 package com.example.courses.features.mainhost.ui.compose
 
-import android.graphics.BlurMaskFilter
-import android.graphics.Color
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.AccountBox
-import androidx.compose.material.icons.filled.DateRange
-import androidx.compose.material.icons.filled.Home
-import androidx.compose.material.icons.outlined.AccountBox
-import androidx.compose.material.icons.outlined.DateRange
-import androidx.compose.material.icons.outlined.Home
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBar
@@ -26,8 +17,8 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.draw.drawWithContent
-import androidx.compose.ui.graphics.Paint
-import androidx.compose.ui.graphics.drawscope.drawIntoCanvas
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.example.courses.components.ui.compose.BaseText
@@ -77,31 +68,25 @@ fun NavBar(
 	)
 
 	val selectedItem by viewModel.currentSection.collectAsState()
+	val borderColor = MaterialTheme.colorScheme.outline
 	var textScale: Double by remember { mutableDoubleStateOf(1.0) }
 	val readyToDrawList = remember { mutableStateListOf(false, false, false) }
 
 	NavigationBar(
-		containerColor = MaterialTheme.colorScheme.background,
-		contentColor = MaterialTheme.colorScheme.primary,
+		containerColor = MaterialTheme.colorScheme.surface,
+		tonalElevation = 0.dp,
 		modifier = modifier
+			.fillMaxWidth()
 			.padding(top = 4.dp)
 			.drawBehind {
-				if (!readyToDrawList.contains(false)) {
-					drawIntoCanvas { canvas ->
-						val paint = Paint()
-						val frameworkPaint = paint.asFrameworkPaint()
-						frameworkPaint.maskFilter = BlurMaskFilter(12.dp.toPx(), BlurMaskFilter.Blur.NORMAL)
-						frameworkPaint.color = Color.BLACK
-
-						canvas.drawRect(
-							left = 0.dp.toPx(),
-							top = 10.dp.toPx(),
-							right = size.width + 0.dp.toPx(),
-							bottom = size.height + 10.dp.toPx(),
-							paint = paint,
-						)
-					}
-				}
+				val strokeWidth = 3.dp.toPx()
+				val y = 0f
+				drawLine(
+					color = borderColor,
+					start = Offset(0f, y),
+					end = Offset(size.width, y),
+					strokeWidth = strokeWidth
+				)
 			},
 	) {
 		navigationItemsList.forEachIndexed { index, item ->
@@ -131,13 +116,13 @@ fun NavBar(
 				colors = NavigationBarItemDefaults.colors(
 					selectedIconColor = MaterialTheme.colorScheme.primary,
 					selectedTextColor = MaterialTheme.colorScheme.primary,
-					unselectedIconColor = MaterialTheme.colorScheme.outline,
-					unselectedTextColor = MaterialTheme.colorScheme.outline,
-					indicatorColor = MaterialTheme.colorScheme.background,
+					unselectedIconColor = MaterialTheme.colorScheme.onSurface,
+					unselectedTextColor = MaterialTheme.colorScheme.onSurface,
+					indicatorColor = MaterialTheme.colorScheme.surfaceContainer,
 				),
 				alwaysShowLabel = true,
-				icon = item.icon
-
+				icon = item.icon,
+				modifier = Modifier.padding(top = 8.dp)
 			)
 		}
 	}

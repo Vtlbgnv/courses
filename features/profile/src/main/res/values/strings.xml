@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="empty">Пока пусто ;(</string>
+	<string name="in_dev">Этот раздел уже находится в разработке. Скоро сможем порадовать вас новым функционалом</string>
+</resources>

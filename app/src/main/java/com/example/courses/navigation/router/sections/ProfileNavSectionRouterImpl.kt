@@ -2,6 +2,7 @@ package com.example.courses.navigation.router.sections
 
 import com.example.courses.core.navigation.router.SectionRouter
 import com.example.courses.features.mainhost.presentation.section.NavSectionRouter
+import com.example.courses.features.profile.ui.getProfileScreen
 
 class ProfileNavSectionRouterImpl(private val router: SectionRouter) : NavSectionRouter {
 
@@ -10,7 +11,7 @@ class ProfileNavSectionRouterImpl(private val router: SectionRouter) : NavSectio
 	override fun init() {
 		if (!initialized) {
 			initialized = true
-//			TODO
+			router.newRootScreen(getProfileScreen())
 		}
 	}
 }

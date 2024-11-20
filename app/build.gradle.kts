@@ -58,6 +58,7 @@ dependencies {
 	implementation(project(":features:mainhost"))
 	implementation(project(":features:profile"))
 	implementation(project(":features:main:courses"))
+	implementation(project(":features:main:details"))
 	implementation(project(":core:navigation"))
 	implementation(project(":core:network"))
 

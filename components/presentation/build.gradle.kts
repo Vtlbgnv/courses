@@ -21,6 +21,7 @@ android {
 }
 
 dependencies {
+	implementation(libs.jsoup)
 	implementation(libs.coroutine.android)
 	implementation(libs.lifeCycleViewModelKtx)
 }

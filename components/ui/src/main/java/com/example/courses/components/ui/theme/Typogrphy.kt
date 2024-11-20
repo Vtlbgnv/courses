@@ -35,8 +35,8 @@ internal val Typography = Typography(
 	),
 	titleMedium = TextStyle(
 		fontFamily = robotoFontFamily,
-		fontSize = 20.sp,
-		lineHeight = 16.sp,
+		fontSize = 22.sp,
+		lineHeight = 28.sp,
 		letterSpacing = 0.sp,
 		fontStyle = FontStyle.Normal,
 		fontWeight = FontWeight(500),

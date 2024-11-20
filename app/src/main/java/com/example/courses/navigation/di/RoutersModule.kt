@@ -9,6 +9,8 @@ import com.example.courses.core.navigation.utils.RouterNames.MAIN_HOST
 import com.example.courses.core.navigation.utils.RouterNames.MAIN_SECTION
 import com.example.courses.core.navigation.utils.RouterNames.PROFILE_SECTION
 import com.example.courses.core.navigation.utils.SectionNames
+import com.example.courses.features.main.courses.presentation.CourseRouter
+import com.example.courses.features.main.details.presentation.DetailsRouter
 import com.example.courses.features.mainhost.presentation.MainHostRouter
 import com.example.courses.features.mainhost.presentation.section.NavSectionRouter
 import com.example.courses.navigation.router.fullscreen.MainHostRouterImpl
@@ -18,6 +20,8 @@ import com.example.courses.navigation.router.main.MainRouterImpl
 import com.example.courses.navigation.router.sections.FavoritesNavSectionRouterImpl
 import com.example.courses.navigation.router.sections.MainNavSectionRouterImpl
 import com.example.courses.navigation.router.sections.ProfileNavSectionRouterImpl
+import com.example.courses.navigation.router.sections.main.CourseRouterImpl
+import com.example.courses.navigation.router.sections.main.DetailsRouterImpl
 import com.example.courses.presentation.MainRouter
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
@@ -57,8 +61,14 @@ val mainRouter = module {
 	factory<MainRouter> { MainRouterImpl(get()) }
 }
 
+val mainSectionRouters = module {
+	factory<CourseRouter> { CourseRouterImpl(get()) }
+	factory<DetailsRouter> { DetailsRouterImpl(get()) }
+}
+
 val routersModule = listOf(
 	fullScreenRouterModule,
 	sectionRouterModule,
 	mainRouter,
+	mainSectionRouters
 )

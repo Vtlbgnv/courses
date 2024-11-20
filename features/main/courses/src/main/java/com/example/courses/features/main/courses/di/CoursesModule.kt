@@ -26,6 +26,7 @@ val coursesModule = module {
 		CoursesViewModel(
 			getCoursesUseCase = get(),
 			eventHandler = get(),
+			router = get(),
 		)
 	}
 }

@@ -43,7 +43,11 @@ internal fun CoursesScreen(
 				CoursesContent(
 					state = state,
 					onLoad = { applyIntent(CoursesIntent.LoadCourses) },
-					onMoreDetailsClick = { applyIntent(CoursesIntent.NavigateToDetailsScreen(it)) }
+					onMoreDetailsClick = { applyIntent(CoursesIntent.NavigateToDetailsScreen(it)) },
+					onFavoriteClick = {id,isFavorite ->
+						applyIntent(CoursesIntent.AddFavorites(id,isFavorite))
+
+					}
 				)
 			}
 

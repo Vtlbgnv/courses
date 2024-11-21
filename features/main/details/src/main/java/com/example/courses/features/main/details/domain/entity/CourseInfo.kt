@@ -5,6 +5,7 @@ data class CourseInfo(
 	val cover: String,
 	val title: String,
 	val hasFavorites: Boolean,
+	val summary: String,
 	val description: String,
 	val rank: String,
 	val canonicalUrl: String,

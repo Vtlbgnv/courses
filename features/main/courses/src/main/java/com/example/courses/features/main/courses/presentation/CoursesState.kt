@@ -6,9 +6,10 @@ import com.example.courses.features.main.courses.domain.entity.Meta
 
 data class CoursesState(
 	val courses: List<Course>,
+	val coursesId: Int,
 	val meta: Meta,
-	val loadingPrevious:Boolean,
-	val loadingNext:Boolean,
+	val loadingPrevious: Boolean,
+	val loadingNext: Boolean,
 	val status: Status
 ) : State
 

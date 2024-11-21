@@ -6,10 +6,7 @@ sealed interface DetailsIntent : Intent {
 
 	data object LoadCourse : DetailsIntent
 
-	data class AddFavorites(
-		val hasFavorites: Boolean,
-		val id: Int,
-	) : DetailsIntent
+	data class AddFavorites(val hasFavorites: Boolean) : DetailsIntent
 
 	data class OpenLink(val url: String) : DetailsIntent
 

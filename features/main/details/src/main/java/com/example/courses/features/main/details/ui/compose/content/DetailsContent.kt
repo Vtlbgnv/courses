@@ -39,7 +39,6 @@ import com.example.courses.components.ui.R as componentR
 
 @Composable
 fun DetailsContent(
-	id: Int,
 	cover: String,
 	title: String,
 	canonicalUrl: String,
@@ -49,7 +48,7 @@ fun DetailsContent(
 	isPaid: Boolean,
 	displayPrice: String,
 	publishedDate: String,
-	onFavoritesClick: (Boolean, Int) -> Unit,
+	onFavoritesClick: (Boolean) -> Unit,
 	onOpenUrlClick: (String) -> Unit,
 	modifier: Modifier = Modifier,
 	authorName: String = stringResource(id = R.string.academy),
@@ -149,9 +148,7 @@ fun DetailsContent(
 				Spacer(modifier = Modifier.weight(1f))
 
 				IconButton(
-					onClick = {
-						onFavoritesClick(!hasFavorites, id)
-					},
+					onClick = { onFavoritesClick(!hasFavorites) },
 					modifier = Modifier
 						.background(
 							color = MaterialTheme.colorScheme.onSurface,
@@ -160,9 +157,9 @@ fun DetailsContent(
 				) {
 					Icon(
 						painter = if (hasFavorites) {
-							painterResource(id = R.drawable.ic_filled_favorites)
+							painterResource(id = componentR.drawable.ic_filled_favorites)
 						} else {
-							painterResource(id = R.drawable.ic_favorites)
+							painterResource(id = componentR.drawable.ic_favorites)
 						},
 						contentDescription = null,
 						tint = if (hasFavorites) {

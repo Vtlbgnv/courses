@@ -8,5 +8,10 @@ sealed interface CoursesIntent : Intent {
 
 	data object LoadPreviousPage : CoursesIntent
 
-	data class NavigateToDetailsScreen(val courseId:Int) : CoursesIntent
+	data class AddFavorites(
+		val courseId: Int,
+		val hasFavorites: Boolean
+	) : CoursesIntent
+
+	data class NavigateToDetailsScreen(val courseId: Int) : CoursesIntent
 }

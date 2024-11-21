@@ -49,5 +49,6 @@ dependencies {
 	implementation(project(":core:navigation"))
 	implementation(project(":core:network"))
 	implementation(project(":components:ui"))
+	implementation(project(":shared:favorites"))
 	implementation(project(":components:presentation"))
 }

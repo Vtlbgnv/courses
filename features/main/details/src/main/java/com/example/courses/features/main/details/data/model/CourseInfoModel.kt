@@ -23,6 +23,7 @@ data class CourseInfoModel(
 	val id: Int,
 	val cover: String,
 	val title: String,
+	val summary: String,
 	val description: String,
 	@Json(name = "canonical_url")
 	val canonicalUrl: String,

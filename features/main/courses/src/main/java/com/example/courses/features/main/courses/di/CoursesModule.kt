@@ -27,6 +27,9 @@ val coursesModule = module {
 			getCoursesUseCase = get(),
 			eventHandler = get(),
 			router = get(),
+			getAllFavoritesCoursesUseCase = get(),
+			saveFavoritesCoursesUseCase = get(),
+			deleteCourseUseCase = get(),
 		)
 	}
 }

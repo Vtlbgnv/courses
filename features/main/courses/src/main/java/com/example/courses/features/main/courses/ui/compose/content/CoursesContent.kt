@@ -31,13 +31,14 @@ private const val NUMBER_ITEMS_LOADING = 5
 internal fun LazyListScope.CoursesContent(
 	state: CoursesState,
 	onMoreDetailsClick: (Int) -> Unit,
+	onFavoriteClick: (Int, Boolean) -> Unit,
 	onLoad: () -> Unit,
 ) {
 	item {
 		Row(
 			modifier = Modifier
 				.fillMaxWidth()
-				.padding(top = 32.dp, bottom = 16.dp),
+				.padding(top = 32.dp, bottom = 24.dp),
 			verticalAlignment = Alignment.CenterVertically
 		) {
 			TextInputField(
@@ -95,6 +96,7 @@ internal fun LazyListScope.CoursesContent(
 				id = course.id,
 				imageUrl = course.cover,
 				rating = course.rank,
+				isFavorite  = course.isFavorite,
 				publishedDate = course.publishedDate,
 				title = course.title,
 				description = course.summary,
@@ -103,8 +105,8 @@ internal fun LazyListScope.CoursesContent(
 				onMoreDetailsClick = {
 					onMoreDetailsClick(it)
 				},
-				onFavoritesClick = {
-					//TODO
+				onFavoritesClick = { id, isFavorite ->
+					onFavoriteClick(id, isFavorite)
 				},
 			)
 

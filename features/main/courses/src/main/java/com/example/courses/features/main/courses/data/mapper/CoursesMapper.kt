@@ -25,7 +25,7 @@ private fun CourseModel.toEntity(): Course =
 		isPaid = isPaid,
 		displayPrice = displayPrice,
 		publishedDate = formatDate(publishedDate),
-		isFavorite = true,
+		isFavorite = false,
 	)
 
 private fun MetaModel.toEntity(): Meta =

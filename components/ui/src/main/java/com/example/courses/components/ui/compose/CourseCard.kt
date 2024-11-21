@@ -36,13 +36,14 @@ fun CourseCard(
 	id: Int,
 	imageUrl: String,
 	rating: String,
+	isFavorite: Boolean,
 	publishedDate: String,
 	title: String,
 	description: String,
 	price: String,
 	isPaid: Boolean,
 	onMoreDetailsClick: (Int) -> Unit,
-	onFavoritesClick: (Int) -> Unit,
+	onFavoritesClick: (Int, Boolean) -> Unit,
 	modifier: Modifier = Modifier
 ) {
 	Column(
@@ -116,24 +117,31 @@ fun CourseCard(
 			}
 
 			IconButton(
-				onClick = { onFavoritesClick(id) },
+				onClick = { onFavoritesClick(id, !isFavorite) },
 				modifier = Modifier
 					.padding(8.dp)
 					.background(
 						color = MaterialTheme.colorScheme.surface.copy(alpha = 0.3f),
 						shape = RoundedCornerShape(50)
 					)
-					.padding(6.dp)
+					.padding(8.dp)
 					.align(Alignment.TopEnd)
 					.size(20.dp),
 			) {
 				Icon(
-					painter = painterResource(id = R.drawable.ic_bookmark),
+					painter = if (isFavorite) {
+						painterResource(id = R.drawable.ic_filled_favorites)
+					} else {
+						painterResource(id = R.drawable.ic_favorites)
+					},
 					contentDescription = null,
-					tint = MaterialTheme.colorScheme.onSurface,
+					tint = if (isFavorite) {
+						MaterialTheme.colorScheme.primary
+					} else {
+						MaterialTheme.colorScheme.onSurface
+					},
 				)
 			}
-
 		}
 
 		BaseText(

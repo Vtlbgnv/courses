@@ -24,9 +24,12 @@ val detailsModule = module {
 	viewModel { (courseId: Int) ->
 		DetailsViewModel(
 			getDetailsUseCase = get(),
+			deleteCourseUseCase = get(),
+			getAllFavoritesCoursesUseCase = get(),
 			eventHandler = get(),
 			router = get(),
 			courseId = courseId,
+			saveFavoritesCoursesUseCase = get(),
 		)
 	}
 }

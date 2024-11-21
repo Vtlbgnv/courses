@@ -11,11 +11,12 @@ fun CoursesResponse.toEntity(): CourseInfo =
 		id = courses[0].id,
 		cover = courses[0].cover,
 		title = courses[0].title,
-		hasFavorites = true,
+		hasFavorites = false,
 		description = textFormat(courses[0].description),
 		canonicalUrl = courses[0].canonicalUrl,
 		isPaid = courses[0].isPaid,
 		displayPrice = courses[0].displayPrice,
 		publishedDate = formatDate(courses[0].publishedDate),
-		rank = randomValue()
+		rank = randomValue(),
+		summary = courses[0].summary,
 	)

@@ -5,11 +5,19 @@ import com.example.courses.components.presentation.mvicore.BaseViewModel
 import com.example.courses.components.presentation.mvicore.EventHandler
 import com.example.courses.features.main.courses.domain.entity.Meta
 import com.example.courses.features.main.courses.domain.usecase.GetCoursesUseCase
+import com.example.courses.shared.favorite.domain.entity.Favorite
+import com.example.courses.shared.favorite.domain.usecase.DeleteCourseUseCase
+import com.example.courses.shared.favorite.domain.usecase.GetAllFavoritesCoursesUseCase
+import com.example.courses.shared.favorite.domain.usecase.SaveCourseUseCase
 import kotlinx.coroutines.CoroutineExceptionHandler
+import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 
 class CoursesViewModel(
 	private val getCoursesUseCase: GetCoursesUseCase,
+	private val deleteCourseUseCase: DeleteCourseUseCase,
+	private val saveFavoritesCoursesUseCase: SaveCourseUseCase,
+	private val getAllFavoritesCoursesUseCase: GetAllFavoritesCoursesUseCase,
 	private val router: CourseRouter,
 	eventHandler: EventHandler<CoursesEvent>,
 ) : BaseViewModel<CoursesState, CoursesIntent>(), EventHandler<CoursesEvent> by eventHandler {
@@ -24,6 +32,7 @@ class CoursesViewModel(
 		status = Status.INITIAL,
 		loadingNext = false,
 		loadingPrevious = false,
+		coursesId = (-1),
 	)
 
 	private val exceptionHandler = CoroutineExceptionHandler { _, _ ->
@@ -34,11 +43,32 @@ class CoursesViewModel(
 		)
 	}
 
+	private val changeFavoritesExceptionHandler = CoroutineExceptionHandler { _, _ ->
+		val currentState = uiState.value
+
+		val revertedCourses = currentState.courses.map { course ->
+			if (course.id == currentState.coursesId) {
+				course.copy(isFavorite = !course.isFavorite)
+			} else {
+				course
+			}
+		}
+
+		setState(
+			currentState.copy(
+				courses = revertedCourses
+			)
+		)
+
+		// TODO SetEvent(DetailsEvent.ShowErrorSnackbar)
+	}
+
 	override fun applyIntent(intent: CoursesIntent) {
 		when (intent) {
-			CoursesIntent.LoadCourses                -> handleLoadCourses()
-			CoursesIntent.LoadPreviousPage           -> handleLoadPreviousPage()
+			is CoursesIntent.LoadCourses             -> handleLoadCourses()
+			is CoursesIntent.LoadPreviousPage        -> handleLoadPreviousPage()
 			is CoursesIntent.NavigateToDetailsScreen -> handleNavigateToDetailsScreen(intent.courseId)
+			is CoursesIntent.AddFavorites            -> handleAddFavorites(intent.hasFavorites, intent.courseId)
 		}
 	}
 
@@ -56,11 +86,26 @@ class CoursesViewModel(
 		)
 
 		viewModelScope.launch(exceptionHandler) {
-			val coursesInfo = getCoursesUseCase(coursesState.meta.page + 1)
+
+			val coursesInfoJob = async {
+				getCoursesUseCase(coursesState.meta.page + 1)
+			}
+
+			val favoritesJob = async {
+				getAllFavoritesCoursesUseCase()
+			}
+
+			val coursesInfo = coursesInfoJob.await()
+			val favoritesId = favoritesJob.await().map { it.id }.toSet()
+			val updatedCourses = (coursesState.courses + coursesInfo.courses)
+				.distinctBy { it.id }
+				.map { course ->
+					course.copy(isFavorite = favoritesId.contains(course.id))
+				}
 
 			setState(
 				coursesState.copy(
-					courses = (coursesState.courses + coursesInfo.courses).distinctBy { it.id },
+					courses = updatedCourses,
 					meta = coursesInfo.meta,
 					loadingNext = false,
 					status = Status.CONTENT
@@ -83,16 +128,67 @@ class CoursesViewModel(
 		)
 
 		viewModelScope.launch(exceptionHandler) {
-			val coursesInfo = getCoursesUseCase(coursesState.meta.page - 1)
+			val coursesInfoJob = async {
+				getCoursesUseCase(coursesState.meta.page - 1)
+			}
+
+			val favoritesJob = async {
+				getAllFavoritesCoursesUseCase()
+			}
+
+			val favoritesId = favoritesJob.await().map { it.id }.toSet()
+			val coursesInfo = coursesInfoJob.await()
+			val updatedCourses = (coursesInfo.courses + coursesState.courses)
+				.distinctBy { it.id }
+				.map { course ->
+					course.copy(isFavorite = favoritesId.contains(course.id))
+				}
 
 			setState(
 				coursesState.copy(
-					courses = (coursesInfo.courses + coursesState.courses).distinctBy { it.id },
+					courses = updatedCourses,
 					meta = coursesInfo.meta,
 					status = Status.CONTENT,
-					loadingPrevious = false,
-				),
+					loadingPrevious = false
+				)
 			)
+		}
+	}
+
+	private fun handleAddFavorites(hasFavorites: Boolean, courseId: Int) {
+		val currentState = uiState.value
+
+		val updatedCourses = currentState.courses.map { course ->
+			if (course.id == courseId) {
+				course.copy(isFavorite = hasFavorites)
+			} else {
+				course
+			}
+		}
+
+		setState(
+			currentState.copy(
+				courses = updatedCourses
+			)
+		)
+
+		viewModelScope.launch(changeFavoritesExceptionHandler) {
+			if (hasFavorites) {
+				saveFavoritesCoursesUseCase(
+					Favorite(
+						id = courseId,
+						cover = updatedCourses.first { it.id == courseId }.cover,
+						rank = updatedCourses.first { it.id == courseId }.rank,
+						title = updatedCourses.first { it.id == courseId }.title,
+						summary = updatedCourses.first { it.id == courseId }.summary,
+						isPaid = updatedCourses.first { it.id == courseId }.isPaid,
+						displayPrice = updatedCourses.first { it.id == courseId }.displayPrice,
+						publishedDate = updatedCourses.first { it.id == courseId }.publishedDate,
+					)
+				)
+			} else {
+				deleteCourseUseCase(courseId)
+			}
 		}
 	}
 

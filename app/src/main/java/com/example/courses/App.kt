@@ -9,6 +9,7 @@ import com.example.courses.navigation.di.ciceroneModule
 import com.example.courses.navigation.di.mainModule
 import com.example.courses.navigation.di.routersModule
 import com.example.courses.network.di.moshiModule
+import com.example.courses.shared.favorite.di.favoriteModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
@@ -31,6 +32,7 @@ class App : Application() {
 			modules(moshiModule)
 			modules(coursesModule)
 			modules(detailsModule)
+			modules(favoriteModule)
 		}
 	}
 }

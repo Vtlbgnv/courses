@@ -3,13 +3,9 @@ agp = "8.5.2"
 jsoup = "1.16.1"
 kotlin = "1.9.10"
 coreKtx = "1.13.1"
-junitVersion = "1.2.1"
-espressoCore = "3.6.1"
 appcompat = "1.7.0"
 material = "1.12.0"
-constraintlayout = "2.2.0"
 navigationFragmentKtx = "2.8.3"
-navigationUiKtx = "2.8.3"
 
 core = "1.12.0"
 cicerone = "7.1"
@@ -29,10 +25,10 @@ mockito_core = "5.13.0"
 mockito_kotlin = "5.4.0"
 turbine = "1.1.0"
 junit5 = "5.11.0"
-junit_suite = "1.11.0"
 lifecycle = "2.8.4"
 coroutines = "1.8.1"
 coil = "2.2.2"
+room = "2.6.1"
 
 
 [libraries]
@@ -63,13 +59,14 @@ coroutine-core = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-c
 coroutine-android = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version.ref = "coroutines" }
 junit-api = { group = "org.junit.jupiter", name = "junit-jupiter-api", version.ref = "junit5" }
 junit-engine = { group = "org.junit.jupiter", name = "junit-jupiter-engine", version.ref = "junit5" }
-junit-params = { group = "org.junit.jupiter", name = "junit-jupiter-params", version.ref = "junit5" }
-junit-suite = { group = "org.junit.platfor", name = "junit-platform-suite", version.ref = "junit_suite" }
 mockito-inline = { group = "org.mockito", name = "mockito-inline", version.ref = "mockito_inline" }
 mockito-junit = { group = "org.mockito", name = "mockito-junit-jupiter", version.ref = "mockito_junit" }
 mockito-core = { group = "org.mockito", name = "mockito-core", version.ref = "mockito_core" }
 mockito-kotlin = { group = "org.mockito.kotlin", name = "mockito-kotlin", version.ref = "mockito_kotlin" }
 coil = { group = "io.coil-kt", name = "coil-compose", version.ref = "coil" }
+room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "room" }
+room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "room" }
+room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "room" }
 
 turbine = { group = "app.cash.turbine", name = "turbine", version.ref = "turbine" }
 coroutineTest = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "coroutines" }

@@ -5,6 +5,7 @@ import com.example.courses.core.network.di.networkModule
 import com.example.courses.features.main.courses.di.coursesModule
 import com.example.courses.features.main.details.di.detailsModule
 import com.example.courses.features.mainhost.di.mainHostModule
+import com.example.courses.features.userfavorites.di.UserFavoritesModule
 import com.example.courses.navigation.di.ciceroneModule
 import com.example.courses.navigation.di.mainModule
 import com.example.courses.navigation.di.routersModule
@@ -33,6 +34,7 @@ class App : Application() {
 			modules(coursesModule)
 			modules(detailsModule)
 			modules(favoriteModule)
+			modules(UserFavoritesModule)
 		}
 	}
 }

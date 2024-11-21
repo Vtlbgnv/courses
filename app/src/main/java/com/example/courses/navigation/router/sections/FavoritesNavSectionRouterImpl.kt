@@ -2,6 +2,7 @@ package com.example.courses.navigation.router.sections
 
 import com.example.courses.core.navigation.router.SectionRouter
 import com.example.courses.features.mainhost.presentation.section.NavSectionRouter
+import com.example.courses.features.userfavorites.ui.getUserFavoritesFragmentScreen
 
 class FavoritesNavSectionRouterImpl(private val router: SectionRouter) : NavSectionRouter {
 
@@ -10,7 +11,7 @@ class FavoritesNavSectionRouterImpl(private val router: SectionRouter) : NavSect
 	override fun init() {
 		if (!initialized) {
 			initialized = true
-//			TODO
+			router.newRootScreen(getUserFavoritesFragmentScreen())
 		}
 	}
 }

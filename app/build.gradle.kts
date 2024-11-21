@@ -60,6 +60,7 @@ dependencies {
 	implementation(project(":features:main:courses"))
 	implementation(project(":features:main:details"))
 	implementation(project(":shared:favorites"))
+	implementation(project(":features:userfavorites"))
 	implementation(project(":core:navigation"))
 	implementation(project(":core:network"))
 

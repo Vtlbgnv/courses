@@ -4,12 +4,14 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonColors
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -47,8 +49,22 @@ fun EmptyContent(
 
 
 		if (onRetryClick != null) {
-			Button(onClick = onRetryClick) {
-				Text(text = stringResource(id = R.string.empty_button_text))
+			Button(
+				onClick = onRetryClick,
+				colors = ButtonColors(
+					contentColor = MaterialTheme.colorScheme.onSurface,
+					containerColor = MaterialTheme.colorScheme.primary,
+					disabledContainerColor = MaterialTheme.colorScheme.surfaceContainer,
+					disabledContentColor = MaterialTheme.colorScheme.outline,
+				),
+				modifier = Modifier
+					.fillMaxWidth()
+					.padding(horizontal = 16.dp)
+			) {
+				BaseText(
+					text = stringResource(id = R.string.empty_button_text),
+					style = MaterialTheme.typography.labelMedium,
+				)
 			}
 		}
 	}

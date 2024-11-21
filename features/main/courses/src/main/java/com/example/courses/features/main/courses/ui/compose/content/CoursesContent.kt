@@ -120,11 +120,11 @@ internal fun LazyListScope.CoursesContent(
 				Spacer(modifier = Modifier.height(16.dp))
 			}
 		}
-	} else {
+	}
+
+	if (state.courses.isEmpty() && !state.loadingNext && !state.loadingPrevious) {
 		item {
-			EmptyContent(
-				onRetryClick = onLoad
-			)
+			EmptyContent(onRetryClick = onLoad)
 		}
 	}
 
